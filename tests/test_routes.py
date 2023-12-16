@@ -53,13 +53,13 @@ class TestAccountService(TestCase):
         """Runs once after each test case"""
         db.session.remove()
 
-
     ######################################################################
     #  H E L P E R   M E T H O D S
     ######################################################################
 
     def _create_accounts(self, count):
         """Factory method to create accounts in bulk"""
+
         accounts = []
         for _ in range(count):
             account = AccountFactory()
@@ -73,7 +73,6 @@ class TestAccountService(TestCase):
             account.id = new_account["id"]
             accounts.append(account)
         return accounts
-
 
     ######################################################################
     #  A C C O U N T   T E S T   C A S E S
@@ -178,7 +177,7 @@ class TestAccountService(TestCase):
         self._create_accounts(5)
         resp = self.client.get(BASE_URL)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
-        
+
         data = resp.get_json()
         self.assertEqual(len(data), 5)
 
